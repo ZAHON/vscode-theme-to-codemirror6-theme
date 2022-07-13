@@ -1,0 +1,38 @@
+.button {
+  min-width: 120px;
+  padding: 0px 14px;
+  background-color: hsl(204, 84%, 33%);
+  color: hsl(0, 0%, 100%);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  border: none;
+  border-radius: 2px;
+  outline-offset: 2px;
+  outline-color: #007fd4;
+  outline-width: 1px;
+  transition-property: background-color transform;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in;
+
+  &--full-width {
+    min-width: 100%;
+  }
+
+  &:hover {
+    background-color: hsl(204, 83%, 40%);
+  }
+
+  &:focus-visible {
+    outline: 1px solid #007fd4;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

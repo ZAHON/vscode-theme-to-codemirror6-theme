@@ -9,9 +9,31 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@codemirror/lang-cpp": "^6.0.1",
+    "@codemirror/lang-css": "^6.0.0",
+    "@codemirror/lang-html": "^6.1.0",
+    "@codemirror/lang-java": "^6.0.0",
+    "@codemirror/lang-javascript": "^6.0.1",
+    "@codemirror/lang-json": "^6.0.0",
+    "@codemirror/lang-markdown": "^6.0.0",
+    "@codemirror/lang-php": "^6.0.0",
+    "@codemirror/lang-python": "^6.0.0",
+    "@codemirror/lang-rust": "^6.0.0",
+    "@codemirror/language-data": "^6.1.0",
+    "@monaco-editor/react": "^4.4.5",
+    "@reduxjs/toolkit": "^1.8.3",
+    "@uiw/react-codemirror": "^4.11.4",
+    "monaco-editor": "^0.33.0",
+    "monaco-editor-textmate": "^3.0.0",
+    "monaco-textmate": "^3.0.1",
     "next": "12.2.2",
+    "onigasm": "^2.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-redux": "^8.0.2",
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.13",
+    "vscode-theme-to-monaco-theme-web": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "18.0.3",

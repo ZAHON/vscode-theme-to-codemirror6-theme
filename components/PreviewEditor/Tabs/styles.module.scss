@@ -1,0 +1,40 @@
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: hsl(240, 1%, 15%);
+  border-bottom: 2px solid hsla(0, 0%, 33%, 0.48);
+}
+
+.tab {
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 8px;
+  cursor: pointer;
+  color: hsl(0, 0%, 100%);
+  border: none;
+  height: 40px;
+  font-size: 14px;
+  line-height: 1;
+  background-color: hsl(0, 0%, 18%);
+  transition: background-color 0.2s ease-in;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: hsl(0, 0%, 34%);
+  }
+
+  &--active {
+    background-color: hsl(0, 0%, 12%);
+  }
+
+  &__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
