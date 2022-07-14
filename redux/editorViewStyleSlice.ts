@@ -6,6 +6,7 @@ export interface EditorViewStyleState {
 
   textColor: string | null;
   backgroundColor: string | null;
+  scrollbarThumbColor: string | null;
 
   cursorColor: string | null;
 
@@ -13,6 +14,7 @@ export interface EditorViewStyleState {
   lineNumbersTextColor: string | null;
 
   activeLineBackgroundColor: string | null;
+  activeLineBorderColor: string | null;
   activeLineLineNumbersBackgroundColor: string | null;
   activeLineLineNumbersTextColor: string | null;
 
@@ -48,6 +50,7 @@ const initialState: EditorViewStyleState = {
 
   textColor: '',
   backgroundColor: '',
+  scrollbarThumbColor: '',
 
   cursorColor: '',
 
@@ -55,6 +58,7 @@ const initialState: EditorViewStyleState = {
   lineNumbersTextColor: '',
 
   activeLineBackgroundColor: '',
+  activeLineBorderColor: '',
   activeLineLineNumbersBackgroundColor: '',
   activeLineLineNumbersTextColor: '',
 

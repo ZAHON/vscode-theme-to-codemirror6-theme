@@ -50,7 +50,7 @@ export const ImportTheme = () => {
             language="json"
             value={vsCodeTheme}
             onChange={(value) => setVsCodeTheme(value)}
-            height="250px"
+            height="300px"
             placeholder={placeholder}
           />
           <Button onClick={buttonClickHandle}>Import</Button>

@@ -4,6 +4,8 @@ const bool = true;
 const number = 123;
 const string = 'string';
 
+const arr = [1, 2, 3, 4, 5];
+
 const test = () => {
   return null
 }

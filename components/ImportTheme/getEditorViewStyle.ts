@@ -10,6 +10,7 @@ export const getEditorViewStyle = (data: string): EditorViewStyleState => {
   // Base
   const textColor: Color = themeObject?.['colors']?.['editor.foreground'];
   const backgroundColor: Color = themeObject?.['colors']?.['editor.background'];
+  const scrollbarThumbColor: Color = themeObject?.['colors']?.['scrollbarSlider.background'];
 
   // Cursor
   const cursorColor: Color = themeObject?.['colors']?.['editorCursor.foreground'];
@@ -20,6 +21,7 @@ export const getEditorViewStyle = (data: string): EditorViewStyleState => {
 
   // ActiveLine
   const activeLineBackgroundColor: Color = themeObject?.['colors']?.['editor.lineHighlightBackground'];
+  const activeLineBorderColor: Color = themeObject?.['colors']?.['editor.lineHighlightBorder'];
   const activeLineLineNumbersBackgroundColor: Color = themeObject?.['colors']?.['editor.background'];
   const activeLineLineNumbersTextColor: Color = themeObject?.['colors']?.['editorLineNumber.activeForeground'];
 
@@ -69,10 +71,12 @@ export const getEditorViewStyle = (data: string): EditorViewStyleState => {
     themeType,
     textColor,
     backgroundColor,
+    scrollbarThumbColor,
     cursorColor,
     lineNumbersBackgroundColor,
     lineNumbersTextColor,
     activeLineBackgroundColor,
+    activeLineBorderColor,
     activeLineLineNumbersBackgroundColor,
     activeLineLineNumbersTextColor,
     foldPlaceholderColor,

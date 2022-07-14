@@ -13,6 +13,7 @@ export const createTheme = (editorViewStyle: EditorViewStyleState, highlightStyl
       '&': {
         color: editorViewStyle.textColor,
         backgroundColor: editorViewStyle.backgroundColor,
+        scrollbarColor: `${editorViewStyle.scrollbarThumbColor} ${editorViewStyle.backgroundColor}`,
       },
 
       // Cursor
@@ -33,7 +34,12 @@ export const createTheme = (editorViewStyle: EditorViewStyleState, highlightStyl
 
       // ActiveLine
       '.cm-activeLine': {
-        backgroundColor: editorViewStyle.activeLineBackgroundColor,
+        backgroundColor: editorViewStyle.activeLineBackgroundColor
+          ? editorViewStyle.activeLineBackgroundColor
+          : 'transparent',
+        boxShadow: editorViewStyle.activeLineBackgroundColor
+          ? 'none'
+          : `0px -2px 0px 0px ${editorViewStyle.activeLineBorderColor}, 0px 2px 0px 0px ${editorViewStyle.activeLineBorderColor}`,
       },
       '.cm-activeLineGutter': {
         backgroundColor: editorViewStyle.activeLineLineNumbersBackgroundColor,
@@ -104,6 +110,12 @@ export const createTheme = (editorViewStyle: EditorViewStyleState, highlightStyl
         color: editorViewStyle.panelsTextColor,
         backgroundColor: editorViewStyle.autocompleteBackgroundColor,
       },
+      '.cm-panels.cm-panels-top': {
+        borderBottom: 'none',
+      },
+      '.cm-panels.cm-panels-bottom': {
+        borderTop: 'none',
+      },
       '.cm-textfield': {
         backgroundColor: editorViewStyle.textfieldBackgroundColor,
         border: `1px solid ${editorViewStyle.textfieldBackgroundColor}`,
@@ -113,7 +125,7 @@ export const createTheme = (editorViewStyle: EditorViewStyleState, highlightStyl
         borderColor: editorViewStyle.textfieldFocusedBorderColor,
       },
       '.cm-button': {
-        color: editorViewStyle.buttonCloseTextColor,
+        color: editorViewStyle.buttonTextColor,
         backgroundColor: editorViewStyle.buttonBackgroundColor,
         backgroundImage: 'none',
         border: 'none',
@@ -147,104 +159,154 @@ export const createTheme = (editorViewStyle: EditorViewStyleState, highlightStyl
     },
     {
       tag: t.definition(t.propertyName),
-      color: highlightStyle.definitionPropertyNameColor,
+      color: highlightStyle.definitionPropertyNameTag.color,
+      fontStyle: highlightStyle.definitionPropertyNameTag.fontStyle,
     },
     {
       tag: [t.moduleKeyword],
-      color: highlightStyle.moduleKeywordColor,
+      color: highlightStyle.moduleKeywordTag.color,
+      fontStyle: highlightStyle.moduleKeywordTag.fontStyle,
     },
     {
       tag: [t.keyword],
-      color: highlightStyle.keywordColor,
+      color: highlightStyle.keywordTag.color,
+      fontStyle: highlightStyle.keywordTag.fontStyle,
     },
     {
       tag: [t.typeName, t.typeOperator],
-      color: highlightStyle.typeNameColor,
+      color: highlightStyle.typeNameTag.color,
+      fontStyle: highlightStyle.typeNameTag.fontStyle,
     },
     {
       tag: [t.definition(t.typeName)],
-      color: highlightStyle.definitionTypeNameColor,
+      color: highlightStyle.definitionTypeNameTag.color,
+      fontStyle: highlightStyle.definitionTypeNameTag.fontStyle,
     },
     {
       tag: [t.operator, t.special(t.string)],
-      color: highlightStyle.operatorColor,
+      color: highlightStyle.operatorTag.color,
+      fontStyle: highlightStyle.operatorTag.fontStyle,
     },
     {
       tag: [t.bool],
-      color: highlightStyle.boolColor,
+      color: highlightStyle.boolTag.color,
+      fontStyle: highlightStyle.boolTag.fontStyle,
     },
     {
       tag: [t.number],
-      color: highlightStyle.numberColor,
+      color: highlightStyle.numberTag.color,
+      fontStyle: highlightStyle.numberTag.fontStyle,
     },
     {
       tag: [t.string, t.processingInstruction, t.inserted],
-      color: highlightStyle.stringColor,
+      color: highlightStyle.stringTag.color,
+      fontStyle: highlightStyle.stringTag.fontStyle,
     },
     {
       tag: [t.null],
-      color: highlightStyle.nullColor,
+      color: highlightStyle.nullTag.color,
+      fontStyle: highlightStyle.nullTag.fontStyle,
     },
     {
       tag: [t.self],
-      color: highlightStyle.selfColor,
+      color: highlightStyle.selfTag.color,
+      fontStyle: highlightStyle.selfTag.fontStyle,
     },
     {
       tag: [t.function(t.variableName), t.function(t.propertyName)],
-      color: highlightStyle.functionVariableNameColor,
+      color: highlightStyle.functionVariableNameTag.color,
+      fontStyle: highlightStyle.functionVariableNameTag.fontStyle,
     },
     {
       tag: [t.comment],
-      color: highlightStyle.commentColor,
+      color: highlightStyle.commentTag.color,
+      fontStyle: highlightStyle.commentTag.fontStyle,
     },
     {
       tag: [t.regexp],
-      color: highlightStyle.regexpColor,
+      color: highlightStyle.regexpTag.color,
+      fontStyle: highlightStyle.regexpTag.fontStyle,
     },
     {
       tag: [t.tagName],
-      color: highlightStyle.tagNameColor,
+      color: highlightStyle.tagNameTag.color,
+      fontStyle: highlightStyle.tagNameTag.fontStyle,
     },
     {
       tag: [t.name],
-      color: highlightStyle.nameColor,
+      color: highlightStyle.nameTag.color,
+      fontStyle: highlightStyle.nameTag.fontStyle,
     },
     {
       tag: [t.definition(t.name)],
-      color: highlightStyle.definitionNameColor,
+      color: highlightStyle.definitionNameTag.color,
+      fontStyle: highlightStyle.definitionNameTag.fontStyle,
     },
     {
       tag: [t.meta],
-      color: highlightStyle.metaColor,
+      color: highlightStyle.metaTag.color,
+      fontStyle: highlightStyle.metaTag.fontStyle,
     },
     {
       tag: [t.attributeName],
-      color: highlightStyle.attributeNameColor,
+      color: highlightStyle.attributeNameTag.color,
+      fontStyle: highlightStyle.attributeNameTag.fontStyle,
     },
     {
       tag: [t.attributeValue],
-      color: highlightStyle.attributeValueColor,
+      color: highlightStyle.attributeValueTag.color,
+      fontStyle: highlightStyle.attributeValueTag.fontStyle,
     },
     {
       tag: [t.atom],
-      color: highlightStyle.atomColor,
+      color: highlightStyle.atomTag.color,
+      fontStyle: highlightStyle.atomTag.fontStyle,
     },
     {
       tag: [t.className, t.namespace],
-      color: highlightStyle.classNameColor,
+      color: highlightStyle.classNameTag.color,
+      fontStyle: highlightStyle.classNameTag.fontStyle,
     },
     {
       tag: [t.unit],
-      color: highlightStyle.unitColor,
+      color: highlightStyle.unitTag.color,
+      fontStyle: highlightStyle.unitTag.fontStyle,
     },
     {
       tag: [t.color, t.constant(t.name), t.standard(t.name)],
-      color: highlightStyle.colorColor,
+      color: highlightStyle.colorTag.color,
+      fontStyle: highlightStyle.colorTag.fontStyle,
     },
     {
       tag: [t.heading],
-      color: highlightStyle.stringColor,
+      color: highlightStyle.stringTag.color,
+      fontStyle: highlightStyle.stringTag.fontStyle,
       fontWeight: '700',
+    },
+    {
+      tag: [t.punctuation],
+      color: highlightStyle.punctuationTag.color,
+      fontStyle: highlightStyle.punctuationTag.fontStyle,
+    },
+    {
+      tag: [t.paren],
+      color: highlightStyle.parenTag.color,
+      fontStyle: highlightStyle.parenTag.fontStyle,
+    },
+    {
+      tag: [t.squareBracket],
+      color: highlightStyle.squareBracketTag.color,
+      fontStyle: highlightStyle.squareBracketTag.fontStyle,
+    },
+    {
+      tag: [t.bracket],
+      color: highlightStyle.bracketTag.color,
+      fontStyle: highlightStyle.bracketTag.fontStyle,
+    },
+    {
+      tag: [t.angleBracket],
+      color: highlightStyle.angleBracketTag.color,
+      fontStyle: highlightStyle.angleBracketTag.fontStyle,
     },
   ]);
 
