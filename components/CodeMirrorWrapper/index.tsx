@@ -28,10 +28,11 @@ export const CodeMirrorWrapper = ({
   placeholder,
   onChange,
 }: CodeMirrorWrapperProps) => {
-  const editorViewStyle = useSelector((state: RootState) => state.editorViewStyle);
-  const highlightStyle = useSelector((state: RootState) => state.highlightStyle);
+  const themeType = useSelector((state: RootState) => state.editorViewStyle.themeType);
+  const colors = useSelector((state: RootState) => state.editorViewStyle.colors);
+  const tags = useSelector((state: RootState) => state.highlightStyle.tags);
 
-  const theme = createTheme(editorViewStyle, highlightStyle);
+  const theme = createTheme(themeType, colors, tags);
 
   const languageExtension = useMemo(() => {
     const languageData = languages.find((data) => data.id === language) as Language;

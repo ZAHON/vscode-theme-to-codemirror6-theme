@@ -1,41 +1,45 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import type { RootState } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from '@/redux/monacoEditorSlice';
 import { setEditorViewStyle } from '@/redux/editorViewStyleSlice';
 import { setHighlightStyle } from '@/redux/highlightStyleSlice';
-
-import { getEditorViewStyle } from './getEditorViewStyle';
-import { getHighlightStyle } from './getHighlightStyle';
+import { getEditorViewStyle } from './utils/getEditorViewStyle';
+import { getHighlightStyle } from './utils/getHighlightStyle';
 import type { editor } from 'monaco-editor';
-
 import { Button } from '@/components/UI/Button/index';
-import { CodeMirrorWrapper } from '@/components/CodeMirrorWrapper/index';
 import { Modal } from '@/components/UI/Modal';
-
-import { placeholder } from './placeholder';
+import { CodeMirrorWrapper } from '@/components/CodeMirrorWrapper/index';
+import { FileImport } from 'tabler-icons-react';
+import { placeholder } from './data/placeholder';
 
 // @ts-ignore
 import * as vscodeThemeToMonacoThemeWeb from 'vscode-theme-to-monaco-theme-web';
 
 export const ImportTheme = () => {
-  const [opened, setOpened] = useState(false);
   const dispatch = useDispatch();
+  const monacoEditorIsMount = useSelector((state: RootState) => state.monacoEditor.isMount);
+  const [opened, setOpened] = useState(false);
   const [vsCodeTheme, setVsCodeTheme] = useState('');
 
   const buttonClickHandle = () => {
     try {
-      const editorViewStyle = getEditorViewStyle(vsCodeTheme);
-      dispatch(setEditorViewStyle(editorViewStyle));
+      if (monacoEditorIsMount) {
+        const editorViewStyle = getEditorViewStyle(vsCodeTheme);
+        dispatch(setEditorViewStyle(editorViewStyle));
 
-      const monacoTheme = vscodeThemeToMonacoThemeWeb.convertTheme(vsCodeTheme) as editor.IStandaloneThemeData;
-      dispatch(setTheme(monacoTheme));
-      setOpened(false);
+        const monacoTheme = vscodeThemeToMonacoThemeWeb.convertTheme(
+          vsCodeTheme
+        ) as editor.IStandaloneThemeData;
+        dispatch(setTheme(monacoTheme));
 
-      setTimeout(() => {
-        const highlightStyle = getHighlightStyle();
+        setTimeout(() => {
+          const highlightStyle = getHighlightStyle();
+          dispatch(setHighlightStyle(highlightStyle));
+        }, 1000);
 
-        dispatch(setHighlightStyle(highlightStyle));
-      }, 2000);
+        setOpened(false);
+      }
     } catch {
       console.log('Error');
     }
@@ -43,7 +47,13 @@ export const ImportTheme = () => {
 
   return (
     <>
-      <Button onClick={() => setOpened(true)}>Import</Button>
+      <Button
+        icon={<FileImport size={15} />}
+        disabled={!monacoEditorIsMount}
+        onClick={() => setOpened(true)}
+      >
+        Import
+      </Button>
       <Modal title="VS Vode Theme" opened={opened} onClose={() => setOpened(false)}>
         <>
           <CodeMirrorWrapper

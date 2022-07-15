@@ -31,6 +31,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.0.2",
+    "tabler-icons-react": "^1.52.0",
     "uuid": "^8.3.2",
     "uuidv4": "^6.2.13",
     "vscode-theme-to-monaco-theme-web": "^1.0.0"

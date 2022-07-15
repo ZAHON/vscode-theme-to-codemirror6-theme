@@ -3,112 +3,133 @@ import { Extension } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 import { tags as t } from '@lezer/highlight';
 
-import type { EditorViewStyleState } from '@/redux/editorViewStyleSlice';
-import type { HighlightStyleState } from '@/redux/highlightStyleSlice';
+import type { Colors } from '@/redux/editorViewStyleSlice';
+import type { Tags } from '@/redux/highlightStyleSlice';
 
-export const createTheme = (editorViewStyle: EditorViewStyleState, highlightStyle: HighlightStyleState): Extension => {
+export const createTheme = (themeType: string, colors: Colors, tags: Tags): Extension => {
   const theme = EditorView.theme(
     {
       // Base
       '&': {
-        color: editorViewStyle.textColor,
-        backgroundColor: editorViewStyle.backgroundColor,
-        scrollbarColor: `${editorViewStyle.scrollbarThumbColor} ${editorViewStyle.backgroundColor}`,
+        color: colors.base.text,
+        backgroundColor: colors.base.background,
+      },
+
+      '.cm-scroller': {
+        '-ms-overflow-style': 'auto',
+        scrollbarColor: `${colors.scrollbar.thumb.background} ${colors.scrollbar.track.background}`,
+
+        '&::-webkit-scrollbar-thumb': {
+          backgroundColor: colors.scrollbar.thumb.background,
+        },
+
+        '&::-webkit-scrollbar-track': {
+          backgroundColor: colors.scrollbar.track.background,
+        },
+
+        '&::-webkit-scrollbar-corner': {
+          backgroundColor: colors.scrollbar.track.background,
+        },
+
+        '&::-webkit-scrollbar': {
+          width: '8px',
+          height: '8px',
+        },
       },
 
       // Cursor
       '.cm-content': {
-        caretColor: editorViewStyle.cursorColor,
+        caretColor: colors.cursor.border,
       },
       '.cm-cursor, .cm-dropCursor': {
-        borderLeftColor: editorViewStyle.cursorColor,
+        borderLeftColor: colors.cursor.border,
         borderLeftWidth: '2px',
       },
 
       // LineNumbers
       '.cm-gutters': {
-        backgroundColor: editorViewStyle.lineNumbersBackgroundColor,
-        color: editorViewStyle.lineNumbersTextColor,
+        backgroundColor: colors.lineNumbers.background,
+        color: colors.lineNumbers.text,
         borderRight: 'none',
+      },
+      '.cm-gutterElement': {
+        userSelect: 'none',
       },
 
       // ActiveLine
       '.cm-activeLine': {
-        backgroundColor: editorViewStyle.activeLineBackgroundColor
-          ? editorViewStyle.activeLineBackgroundColor
+        backgroundColor: colors.activeLine.background
+          ? colors.activeLine.background
           : 'transparent',
-        boxShadow: editorViewStyle.activeLineBackgroundColor
+        boxShadow: colors.activeLine.background
           ? 'none'
-          : `0px -2px 0px 0px ${editorViewStyle.activeLineBorderColor}, 0px 2px 0px 0px ${editorViewStyle.activeLineBorderColor}`,
+          : `0px -2px 0px 0px ${colors.activeLine.border}, 0px 2px 0px 0px ${colors.activeLine.border}`,
       },
       '.cm-activeLineGutter': {
-        backgroundColor: editorViewStyle.activeLineLineNumbersBackgroundColor,
-        color: editorViewStyle.activeLineLineNumbersTextColor,
+        backgroundColor: colors.activeLine.lineNumbers.background,
+        color: colors.activeLine.lineNumbers.text,
       },
 
       // FoldPlaceholder
       '.cm-foldPlaceholder': {
         backgroundColor: 'transparent',
         border: 'none',
-        color: editorViewStyle.foldPlaceholderColor,
+        color: colors.foldPlaceholder.text,
       },
 
       // Selection
       '&.cm-focused .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection': {
-        backgroundColor: editorViewStyle.selectionBackgroundColor,
+        backgroundColor: colors.selection.background,
       },
       '.cm-selectionMatch': {
-        backgroundColor: editorViewStyle.selectionMatchBackgroundColor,
-        outline: `1px solid ${editorViewStyle.selectionMatchBorderColor}`,
+        backgroundColor: colors.selection.match.background,
+        outline: `1px solid ${colors.selection.match.outline}`,
       },
 
       // MatchingBracket
       '&.cm-focused .cm-matchingBracket': {
-        backgroundColor: editorViewStyle.matchingBracketBackgroundColor,
-        outline: `1px solid ${editorViewStyle.matchingBracketOutlineColor}`,
+        backgroundColor: colors.matchingBracket.background,
+        outline: `1px solid ${colors.matchingBracket.outline}`,
       },
 
       // SearchMatch
       '.cm-searchMatch': {
-        backgroundColor: editorViewStyle.searchMatchBackgroundColor,
+        backgroundColor: colors.searchMatch.background,
       },
       '.cm-searchMatch.cm-searchMatch-selected': {
-        backgroundColor: editorViewStyle.searchMatchSelectedBackgroundColor,
+        backgroundColor: colors.searchMatch.selected.background,
       },
 
       // Autocomplete
       '.cm-tooltip': {
-        backgroundColor: editorViewStyle.autocompleteBackgroundColor,
-        border: `1px solid ${editorViewStyle.autocompleteBorderColor}`,
+        backgroundColor: colors.autocomplete.background,
+        border: `1px solid ${colors.autocomplete.border}`,
       },
       '.cm-tooltip .cm-tooltip-arrow:before': {
         borderTopColor: 'transparent',
         borderBottomColor: 'transparent',
       },
       '.cm-tooltip .cm-tooltip-arrow:after': {
-        borderTopColor: editorViewStyle.autocompleteBackgroundColor,
-        borderBottomColor: editorViewStyle.autocompleteBackgroundColor,
+        borderTopColor: colors.autocomplete.background,
+        borderBottomColor: colors.autocomplete.background,
       },
       '.cm-tooltip-autocomplete': {
         '& > ul > li': {
-          color: editorViewStyle.autocompleteItemTextColor,
+          color: colors.autocomplete.item.text,
         },
         '& > ul > li[aria-selected]': {
-          color: editorViewStyle.autocompleteItemSelectedTextColor,
-          backgroundColor: editorViewStyle.autocompleteItemSelectedBackgroundColor,
+          color: colors.autocomplete.item.selected.text,
+          backgroundColor: colors.autocomplete.item.selected.background,
         },
-        '& > ul > li[aria-selected]:hover': {
-          backgroundColor: editorViewStyle.autocompleteItemSelectedBackgroundColor,
-        },
-        '& > ul > li:hover': {
-          backgroundColor: editorViewStyle.autocompleteItemHoveredBackgroundColor,
+        '& > ul > li:hover:not([aria-selected])': {
+          backgroundColor: colors.autocomplete.item.hovered.background,
         },
       },
 
       // Panels
       '.cm-panels': {
-        color: editorViewStyle.panelsTextColor,
-        backgroundColor: editorViewStyle.autocompleteBackgroundColor,
+        color: colors.panels.text,
+        backgroundColor: colors.panels.background,
       },
       '.cm-panels.cm-panels-top': {
         borderBottom: 'none',
@@ -117,35 +138,35 @@ export const createTheme = (editorViewStyle: EditorViewStyleState, highlightStyl
         borderTop: 'none',
       },
       '.cm-textfield': {
-        backgroundColor: editorViewStyle.textfieldBackgroundColor,
-        border: `1px solid ${editorViewStyle.textfieldBackgroundColor}`,
+        backgroundColor: colors.panels.textField.background,
+        border: `1px solid ${colors.panels.textField.background}`,
       },
       '.cm-textfield:focus': {
         outline: 'none',
-        borderColor: editorViewStyle.textfieldFocusedBorderColor,
+        borderColor: colors.panels.textField.focused.border,
       },
       '.cm-button': {
-        color: editorViewStyle.buttonTextColor,
-        backgroundColor: editorViewStyle.buttonBackgroundColor,
+        color: colors.panels.button.text,
+        backgroundColor: colors.panels.button.background,
         backgroundImage: 'none',
         border: 'none',
         borderRadius: '0',
       },
       '.cm-button:focus': {
         outlineOffset: '1px',
-        outline: `1px solid ${editorViewStyle.buttonFocusOutlineColor}`,
+        outline: `1px solid ${colors.panels.button.focused.outline}`,
       },
       '.cm-button:hover': {
-        backgroundColor: editorViewStyle.buttonHoveredBackgroundColor,
+        backgroundColor: colors.panels.button.hovered.background,
       },
       '.cm-button:active': {
         backgroundImage: 'none',
       },
       '[name="close"]': {
-        color: editorViewStyle.buttonCloseTextColor,
+        color: colors.panels.buttonClose.text,
       },
     },
-    { dark: editorViewStyle.themeType === 'dark' }
+    { dark: themeType === 'dark' }
   );
 
   const themeHighlightStyle = HighlightStyle.define([
@@ -159,154 +180,154 @@ export const createTheme = (editorViewStyle: EditorViewStyleState, highlightStyl
     },
     {
       tag: t.definition(t.propertyName),
-      color: highlightStyle.definitionPropertyNameTag.color,
-      fontStyle: highlightStyle.definitionPropertyNameTag.fontStyle,
+      color: tags.definitionPropertyNameTag.color,
+      fontStyle: tags.definitionPropertyNameTag.fontStyle,
     },
     {
       tag: [t.moduleKeyword],
-      color: highlightStyle.moduleKeywordTag.color,
-      fontStyle: highlightStyle.moduleKeywordTag.fontStyle,
+      color: tags.moduleKeywordTag.color,
+      fontStyle: tags.moduleKeywordTag.fontStyle,
     },
     {
       tag: [t.keyword],
-      color: highlightStyle.keywordTag.color,
-      fontStyle: highlightStyle.keywordTag.fontStyle,
+      color: tags.keywordTag.color,
+      fontStyle: tags.keywordTag.fontStyle,
     },
     {
       tag: [t.typeName, t.typeOperator],
-      color: highlightStyle.typeNameTag.color,
-      fontStyle: highlightStyle.typeNameTag.fontStyle,
+      color: tags.typeNameTag.color,
+      fontStyle: tags.typeNameTag.fontStyle,
     },
     {
       tag: [t.definition(t.typeName)],
-      color: highlightStyle.definitionTypeNameTag.color,
-      fontStyle: highlightStyle.definitionTypeNameTag.fontStyle,
+      color: tags.definitionTypeNameTag.color,
+      fontStyle: tags.definitionTypeNameTag.fontStyle,
     },
     {
       tag: [t.operator, t.special(t.string)],
-      color: highlightStyle.operatorTag.color,
-      fontStyle: highlightStyle.operatorTag.fontStyle,
+      color: tags.operatorTag.color,
+      fontStyle: tags.operatorTag.fontStyle,
     },
     {
       tag: [t.bool],
-      color: highlightStyle.boolTag.color,
-      fontStyle: highlightStyle.boolTag.fontStyle,
+      color: tags.boolTag.color,
+      fontStyle: tags.boolTag.fontStyle,
     },
     {
       tag: [t.number],
-      color: highlightStyle.numberTag.color,
-      fontStyle: highlightStyle.numberTag.fontStyle,
+      color: tags.numberTag.color,
+      fontStyle: tags.numberTag.fontStyle,
     },
     {
       tag: [t.string, t.processingInstruction, t.inserted],
-      color: highlightStyle.stringTag.color,
-      fontStyle: highlightStyle.stringTag.fontStyle,
+      color: tags.stringTag.color,
+      fontStyle: tags.stringTag.fontStyle,
     },
     {
       tag: [t.null],
-      color: highlightStyle.nullTag.color,
-      fontStyle: highlightStyle.nullTag.fontStyle,
+      color: tags.nullTag.color,
+      fontStyle: tags.nullTag.fontStyle,
     },
     {
       tag: [t.self],
-      color: highlightStyle.selfTag.color,
-      fontStyle: highlightStyle.selfTag.fontStyle,
+      color: tags.selfTag.color,
+      fontStyle: tags.selfTag.fontStyle,
     },
     {
       tag: [t.function(t.variableName), t.function(t.propertyName)],
-      color: highlightStyle.functionVariableNameTag.color,
-      fontStyle: highlightStyle.functionVariableNameTag.fontStyle,
+      color: tags.functionVariableNameTag.color,
+      fontStyle: tags.functionVariableNameTag.fontStyle,
     },
     {
       tag: [t.comment],
-      color: highlightStyle.commentTag.color,
-      fontStyle: highlightStyle.commentTag.fontStyle,
+      color: tags.commentTag.color,
+      fontStyle: tags.commentTag.fontStyle,
     },
     {
       tag: [t.regexp],
-      color: highlightStyle.regexpTag.color,
-      fontStyle: highlightStyle.regexpTag.fontStyle,
+      color: tags.regexpTag.color,
+      fontStyle: tags.regexpTag.fontStyle,
     },
     {
       tag: [t.tagName],
-      color: highlightStyle.tagNameTag.color,
-      fontStyle: highlightStyle.tagNameTag.fontStyle,
+      color: tags.tagNameTag.color,
+      fontStyle: tags.tagNameTag.fontStyle,
     },
     {
       tag: [t.name],
-      color: highlightStyle.nameTag.color,
-      fontStyle: highlightStyle.nameTag.fontStyle,
+      color: tags.nameTag.color,
+      fontStyle: tags.nameTag.fontStyle,
     },
     {
       tag: [t.definition(t.name)],
-      color: highlightStyle.definitionNameTag.color,
-      fontStyle: highlightStyle.definitionNameTag.fontStyle,
+      color: tags.definitionNameTag.color,
+      fontStyle: tags.definitionNameTag.fontStyle,
     },
     {
       tag: [t.meta],
-      color: highlightStyle.metaTag.color,
-      fontStyle: highlightStyle.metaTag.fontStyle,
+      color: tags.metaTag.color,
+      fontStyle: tags.metaTag.fontStyle,
     },
     {
       tag: [t.attributeName],
-      color: highlightStyle.attributeNameTag.color,
-      fontStyle: highlightStyle.attributeNameTag.fontStyle,
+      color: tags.attributeNameTag.color,
+      fontStyle: tags.attributeNameTag.fontStyle,
     },
     {
       tag: [t.attributeValue],
-      color: highlightStyle.attributeValueTag.color,
-      fontStyle: highlightStyle.attributeValueTag.fontStyle,
+      color: tags.attributeValueTag.color,
+      fontStyle: tags.attributeValueTag.fontStyle,
     },
     {
       tag: [t.atom],
-      color: highlightStyle.atomTag.color,
-      fontStyle: highlightStyle.atomTag.fontStyle,
+      color: tags.atomTag.color,
+      fontStyle: tags.atomTag.fontStyle,
     },
     {
       tag: [t.className, t.namespace],
-      color: highlightStyle.classNameTag.color,
-      fontStyle: highlightStyle.classNameTag.fontStyle,
+      color: tags.classNameTag.color,
+      fontStyle: tags.classNameTag.fontStyle,
     },
     {
       tag: [t.unit],
-      color: highlightStyle.unitTag.color,
-      fontStyle: highlightStyle.unitTag.fontStyle,
+      color: tags.unitTag.color,
+      fontStyle: tags.unitTag.fontStyle,
     },
     {
       tag: [t.color, t.constant(t.name), t.standard(t.name)],
-      color: highlightStyle.colorTag.color,
-      fontStyle: highlightStyle.colorTag.fontStyle,
+      color: tags.colorTag.color,
+      fontStyle: tags.colorTag.fontStyle,
     },
     {
       tag: [t.heading],
-      color: highlightStyle.stringTag.color,
-      fontStyle: highlightStyle.stringTag.fontStyle,
+      color: tags.stringTag.color,
+      fontStyle: tags.stringTag.fontStyle,
       fontWeight: '700',
     },
     {
       tag: [t.punctuation],
-      color: highlightStyle.punctuationTag.color,
-      fontStyle: highlightStyle.punctuationTag.fontStyle,
+      color: tags.punctuationTag.color,
+      fontStyle: tags.punctuationTag.fontStyle,
     },
     {
       tag: [t.paren],
-      color: highlightStyle.parenTag.color,
-      fontStyle: highlightStyle.parenTag.fontStyle,
+      color: tags.parenTag.color,
+      fontStyle: tags.parenTag.fontStyle,
     },
     {
       tag: [t.squareBracket],
-      color: highlightStyle.squareBracketTag.color,
-      fontStyle: highlightStyle.squareBracketTag.fontStyle,
+      color: tags.squareBracketTag.color,
+      fontStyle: tags.squareBracketTag.fontStyle,
     },
     {
       tag: [t.bracket],
-      color: highlightStyle.bracketTag.color,
-      fontStyle: highlightStyle.bracketTag.fontStyle,
+      color: tags.bracketTag.color,
+      fontStyle: tags.bracketTag.fontStyle,
     },
     {
       tag: [t.angleBracket],
-      color: highlightStyle.angleBracketTag.color,
-      fontStyle: highlightStyle.angleBracketTag.fontStyle,
+      color: tags.angleBracketTag.color,
+      fontStyle: tags.angleBracketTag.fontStyle,
     },
   ]);
 

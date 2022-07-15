@@ -1,108 +1,200 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+export type Colors = {
+  base: {
+    text: string;
+    background: string;
+  };
+  scrollbar: {
+    thumb: {
+      background: string;
+    };
+    track: {
+      background: string;
+    };
+  };
+  cursor: {
+    border: string;
+  };
+  lineNumbers: {
+    text: string;
+    background: string;
+  };
+  activeLine: {
+    background: string;
+    border: string;
+    lineNumbers: {
+      text: string;
+      background: string;
+    };
+  };
+  foldPlaceholder: {
+    text: string;
+  };
+  selection: {
+    background: string;
+    match: {
+      background: string;
+      outline: string;
+    };
+  };
+  matchingBracket: {
+    background: string;
+    outline: string;
+  };
+  searchMatch: {
+    background: string;
+    selected: {
+      background: string;
+    };
+  };
+  autocomplete: {
+    background: string;
+    border: string;
+    item: {
+      text: string;
+      selected: {
+        text: string;
+        background: string;
+      };
+      hovered: {
+        background: string;
+      };
+    };
+  };
+  panels: {
+    text: string;
+    background: string;
+    textField: {
+      background: string;
+      focused: {
+        border: string;
+      };
+    };
+    button: {
+      text: string;
+      background: string;
+      hovered: {
+        background: string;
+      };
+      focused: {
+        outline: string;
+      };
+    };
+    buttonClose: {
+      text: string;
+    };
+  };
+};
+
 export interface EditorViewStyleState {
-  themeType: string | null;
-
-  textColor: string | null;
-  backgroundColor: string | null;
-  scrollbarThumbColor: string | null;
-
-  cursorColor: string | null;
-
-  lineNumbersBackgroundColor: string | null;
-  lineNumbersTextColor: string | null;
-
-  activeLineBackgroundColor: string | null;
-  activeLineBorderColor: string | null;
-  activeLineLineNumbersBackgroundColor: string | null;
-  activeLineLineNumbersTextColor: string | null;
-
-  foldPlaceholderColor: string | null;
-
-  selectionBackgroundColor: string | null;
-  selectionMatchBackgroundColor: string | null;
-  selectionMatchBorderColor: string | null;
-
-  matchingBracketBackgroundColor: string | null;
-  matchingBracketOutlineColor: string | null;
-  searchMatchBackgroundColor: string | null;
-  searchMatchSelectedBackgroundColor: string | null;
-  autocompleteBackgroundColor: string | null;
-  autocompleteBorderColor: string | null;
-  autocompleteItemTextColor: string | null;
-  autocompleteItemSelectedTextColor: string | null;
-  autocompleteItemSelectedBackgroundColor: string | null;
-  autocompleteItemHoveredBackgroundColor: string | null;
-  panelsTextColor: string | null;
-  panelsBackgroundColor: string | null;
-  textfieldBackgroundColor: string | null;
-  textfieldFocusedBorderColor: string | null;
-  buttonTextColor: string | null;
-  buttonBackgroundColor: string | null;
-  buttonHoveredBackgroundColor: string | null;
-  buttonFocusOutlineColor: string | null;
-  buttonCloseTextColor: string | null;
+  isLoad: boolean;
+  themeType: string;
+  colors: Colors;
 }
 
 const initialState: EditorViewStyleState = {
+  isLoad: false,
   themeType: '',
-
-  textColor: '',
-  backgroundColor: '',
-  scrollbarThumbColor: '',
-
-  cursorColor: '',
-
-  lineNumbersBackgroundColor: '',
-  lineNumbersTextColor: '',
-
-  activeLineBackgroundColor: '',
-  activeLineBorderColor: '',
-  activeLineLineNumbersBackgroundColor: '',
-  activeLineLineNumbersTextColor: '',
-
-  foldPlaceholderColor: '',
-
-  selectionBackgroundColor: '',
-  selectionMatchBackgroundColor: '',
-  selectionMatchBorderColor: '',
-
-  matchingBracketBackgroundColor: '',
-  matchingBracketOutlineColor: '',
-  searchMatchBackgroundColor: '',
-  searchMatchSelectedBackgroundColor: '',
-  autocompleteBackgroundColor: '',
-  autocompleteBorderColor: '',
-  autocompleteItemTextColor: '',
-  autocompleteItemSelectedTextColor: '',
-  autocompleteItemSelectedBackgroundColor: '',
-  autocompleteItemHoveredBackgroundColor: '',
-  panelsTextColor: '',
-  panelsBackgroundColor: '',
-  textfieldBackgroundColor: '',
-  textfieldFocusedBorderColor: '',
-  buttonTextColor: '',
-  buttonBackgroundColor: '',
-  buttonHoveredBackgroundColor: '',
-  buttonFocusOutlineColor: '',
-  buttonCloseTextColor: '',
+  colors: {
+    base: {
+      text: '',
+      background: '',
+    },
+    scrollbar: {
+      thumb: {
+        background: '',
+      },
+      track: {
+        background: '',
+      },
+    },
+    cursor: {
+      border: '',
+    },
+    lineNumbers: {
+      text: '',
+      background: '',
+    },
+    activeLine: {
+      background: '',
+      border: '',
+      lineNumbers: {
+        text: '',
+        background: '',
+      },
+    },
+    foldPlaceholder: {
+      text: '',
+    },
+    selection: {
+      background: '',
+      match: {
+        background: '',
+        outline: '',
+      },
+    },
+    matchingBracket: {
+      background: '',
+      outline: '',
+    },
+    searchMatch: {
+      background: '',
+      selected: {
+        background: '',
+      },
+    },
+    autocomplete: {
+      background: '',
+      border: '',
+      item: {
+        text: '',
+        selected: {
+          text: '',
+          background: '',
+        },
+        hovered: {
+          background: '',
+        },
+      },
+    },
+    panels: {
+      text: '',
+      background: '',
+      textField: {
+        background: '',
+        focused: {
+          border: '',
+        },
+      },
+      button: {
+        text: '',
+        background: '',
+        hovered: {
+          background: '',
+        },
+        focused: {
+          outline: '',
+        },
+      },
+      buttonClose: {
+        text: '',
+      },
+    },
+  },
 };
 
 export const editorViewStyleSlice = createSlice({
   name: 'editorViewStyle',
   initialState,
   reducers: {
-    setOption(state, action: PayloadAction<{ key: keyof EditorViewStyleState; value: string | null }>) {
-      state[action.payload.key] = action.payload.value;
-    },
-
     setEditorViewStyle(state, action: PayloadAction<EditorViewStyleState>) {
       return action.payload;
     },
   },
 });
 
-export const { setOption, setEditorViewStyle } = editorViewStyleSlice.actions;
+export const { setEditorViewStyle } = editorViewStyleSlice.actions;
 
 export default editorViewStyleSlice.reducer;

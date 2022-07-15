@@ -6,6 +6,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  column-gap: 8px;
   cursor: pointer;
   height: 30px;
   font-size: 14px;
@@ -14,7 +15,7 @@
   border: none;
   border-radius: 2px;
   outline-offset: 2px;
-  outline-color: #007fd4;
+  outline-color: hsl(204, 100%, 42%);
   outline-width: 1px;
   transition-property: background-color transform;
   transition-duration: 0.1s;
@@ -24,15 +25,26 @@
     min-width: 100%;
   }
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: hsl(204, 83%, 40%);
   }
 
-  &:focus-visible {
-    outline: 1px solid #007fd4;
+  &:focus-visible:not(:disabled) {
+    outline: 1px solid hsl(204, 100%, 42%);
   }
 
-  &:active {
+  &:active:not(:disabled) {
     transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

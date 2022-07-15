@@ -4,7 +4,8 @@ import { useState, useRef } from 'react';
 import { useLanguage } from './hooks/useLanguage';
 import { useTheme } from './hooks/useTheme';
 import type { RootState } from '@/redux/store';
-import { useSelector } from 'react-redux';
+import { setIsMount } from '@/redux/monacoEditorSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 export type ReactMonacoEditorProps = {
   language: string;
@@ -13,6 +14,7 @@ export type ReactMonacoEditorProps = {
 
 const ReactMonacoEditor = ({ language, value }: ReactMonacoEditorProps) => {
   const isOnigasmloaded = true;
+  const dispatch = useDispatch();
   const theme = useSelector((state: RootState) => state.monacoEditor.theme);
   const monaco = useMonaco();
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
@@ -29,6 +31,8 @@ const ReactMonacoEditor = ({ language, value }: ReactMonacoEditorProps) => {
   const handleEditorDidMount = (editor: editor.IStandaloneCodeEditor) => {
     editorRef.current = editor;
 
+    dispatch(setIsMount(true));
+
     editor.onDidContentSizeChange(() => {
       updateHeight(editor);
     });
@@ -42,7 +46,6 @@ const ReactMonacoEditor = ({ language, value }: ReactMonacoEditorProps) => {
       language={loadedLanguage}
       value={value}
       theme={loadedTheme}
-      // keepCurrentModel={true}
       options={{
         bracketPairColorization: {
           enabled: true,

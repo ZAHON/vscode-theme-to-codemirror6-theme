@@ -10,6 +10,12 @@ type PortalProps = {
 };
 
 const Portal = ({ children }: PortalProps) => {
+  useEffect(() => {
+    document.body.style.setProperty('overflow', 'hidden');
+
+    return () => document.body.style.setProperty('overflow', 'auto');
+  });
+
   return createPortal(children, document.getElementById('modal-root')!);
 };
 

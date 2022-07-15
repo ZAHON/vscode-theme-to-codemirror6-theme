@@ -7,8 +7,7 @@ import type { editor } from 'monaco-editor';
 type Monaco = typeof import('monaco-editor/esm/vs/editor/editor.api') | null;
 
 const registry = new Registry({
-  getGrammarDefinition: async (scopeName: string, dependentScope: string) => {
-    console.log(`scopeName: ${scopeName}, dependentScope: ${dependentScope}`);
+  getGrammarDefinition: async (scopeName: string) => {
     const language = languages.find((language) => language.scopeName === scopeName);
 
     if (language === undefined) return;
