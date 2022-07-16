@@ -1,7 +1,9 @@
 import type { EditorViewStyleState, Colors } from '@/redux/editorViewStyleSlice';
 
 export const getEditorViewStyle = (data: string): EditorViewStyleState => {
-  const theme = JSON.parse(data.replaceAll('//', ''));
+  const theme = JSON.parse(data.replaceAll('//', '').trim());
+
+  console.log(theme);
 
   const getThemeColor = (property: string) => {
     const color: string | undefined | null = theme?.['colors']?.[property];

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import type { editor } from 'monaco-editor';
-import { uuid } from 'uuidv4';
 
 type Monaco = typeof import('monaco-editor/esm/vs/editor/editor.api') | null;
 
@@ -12,7 +11,7 @@ export const useTheme = (theme: editor.IStandaloneThemeData, monaco: Monaco) => 
     if (theme === null) return;
 
     try {
-      const themeID = uuid();
+      const themeID = 'themeid';
       monaco.editor.defineTheme(themeID, theme);
       setLoadedTheme(themeID);
     } catch {

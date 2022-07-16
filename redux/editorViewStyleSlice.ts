@@ -99,87 +99,87 @@ const initialState: EditorViewStyleState = {
   themeType: '',
   colors: {
     base: {
-      text: '',
-      background: '',
+      text: '#d4d4d4',
+      background: '#1e1e1e',
     },
     scrollbar: {
       thumb: {
-        background: '',
+        background: '#79797966',
       },
       track: {
-        background: '',
+        background: '#1e1e1e',
       },
     },
     cursor: {
-      border: '',
+      border: '#aeafad',
     },
     lineNumbers: {
-      text: '',
-      background: '',
+      text: '#858585',
+      background: '#1e1e1e',
     },
     activeLine: {
       background: '',
-      border: '',
+      border: '#282828',
       lineNumbers: {
-        text: '',
-        background: '',
+        text: '#c6c6c6',
+        background: '#1e1e1e',
       },
     },
     foldPlaceholder: {
-      text: '',
+      text: '#c5c5c5',
     },
     selection: {
-      background: '',
+      background: '#264f78',
       match: {
-        background: '',
-        outline: '',
+        background: '#add6ff26',
+        outline: 'none',
       },
     },
     matchingBracket: {
-      background: '',
-      outline: '',
+      background: '#0064001a',
+      outline: '#888888',
     },
     searchMatch: {
-      background: '',
+      background: '#ea5c0055',
       selected: {
-        background: '',
+        background: '#515c6a',
       },
     },
     autocomplete: {
-      background: '',
-      border: '',
+      background: '#252526',
+      border: '#454545',
       item: {
-        text: '',
+        text: '#d4d4d4',
         selected: {
-          text: '',
-          background: '',
+          text: '#ffffff',
+          background: '#094771',
         },
         hovered: {
-          background: '',
+          background: '#2a2d2e',
         },
       },
     },
     panels: {
-      text: '',
-      background: '',
+      text: '#cccccc',
+      background: '#252526',
       textField: {
-        background: '',
+        background: '#3c3c3c',
         focused: {
-          border: '',
+          border: '#007fd4',
         },
       },
       button: {
-        text: '',
-        background: '',
+        text: '#ffffff',
+        background: '#0e639c',
         hovered: {
-          background: '',
+          background: '#1177bb',
         },
         focused: {
-          outline: '',
+          outline: '#007fd4',
         },
       },
       buttonClose: {
-        text: '',
+        text: '#cccccc',
       },
     },
   },

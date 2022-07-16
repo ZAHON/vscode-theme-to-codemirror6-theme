@@ -14,7 +14,7 @@
     white-space: nowrap;
 
     &:focus + label {
-      border-color: hsl(204, 100%, 42%);
+      border-color: var(--color-blue-0);
     }
 
     &:checked + label::after {
@@ -27,8 +27,8 @@
     display: inline-block;
     width: 22px;
     height: 22px;
-    background-color: hsl(0, 0%, 24%);
-    border: 2px solid hsl(0, 0%, 24%);
+    background-color: var(--color-dark-3);
+    border: 2px solid var(--color-dark-3);
     border-radius: 4px;
     transition-property: border-color;
     transition-duration: 0.1s;
@@ -40,12 +40,13 @@
       position: absolute;
       inset: 0;
       background-size: cover;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' stroke='%23cccccc' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 0h24v24H0z' stroke='none'/%3E%3Cpath d='m5 12 5 5L20 7'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 0h24v24H0z' stroke='none'/%3E%3Cpath d='m5 12 5 5L20 7'/%3E%3C/svg%3E");
       // transition: opacity 0.1s ease-in;
     }
   }
 
   &__label {
     font-size: 14px;
+    font-weight: 500;
   }
 }

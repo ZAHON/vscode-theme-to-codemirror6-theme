@@ -48,119 +48,119 @@ const initialState: HighlightStyleState = {
 
   tags: {
     definitionPropertyNameTag: {
-      color: '',
+      color: '#9cdcfe',
       fontStyle: 'normal',
     },
     moduleKeywordTag: {
-      color: '',
+      color: '#c586c0',
       fontStyle: 'normal',
     },
     keywordTag: {
-      color: '',
+      color: '#569cd6',
       fontStyle: 'normal',
     },
     typeNameTag: {
-      color: '',
+      color: '#4ec9b0',
       fontStyle: 'normal',
     },
     definitionTypeNameTag: {
-      color: '',
+      color: '#4ec9b0',
       fontStyle: 'normal',
     },
     operatorTag: {
-      color: '',
+      color: '#569cd6',
       fontStyle: 'normal',
     },
     boolTag: {
-      color: '',
+      color: '#569cd6',
       fontStyle: 'normal',
     },
     numberTag: {
-      color: '',
+      color: '#b5cea8',
       fontStyle: 'normal',
     },
     stringTag: {
-      color: '',
+      color: '#ce9178',
       fontStyle: 'normal',
     },
     nullTag: {
-      color: '',
+      color: '#569cd6',
       fontStyle: 'normal',
     },
     selfTag: {
-      color: '',
+      color: '#569cd6',
       fontStyle: 'normal',
     },
     functionVariableNameTag: {
-      color: '',
+      color: '#dcdca8',
       fontStyle: 'normal',
     },
     commentTag: {
-      color: '',
+      color: '#6a9955',
       fontStyle: 'normal',
     },
     regexpTag: {
-      color: '',
+      color: '#d16969',
       fontStyle: 'normal',
     },
     tagNameTag: {
-      color: '',
+      color: '#569cd6',
       fontStyle: 'normal',
     },
     nameTag: {
-      color: '',
+      color: '#9cdcfe',
       fontStyle: 'normal',
     },
     definitionNameTag: {
-      color: '',
+      color: '#9cdcfe',
       fontStyle: 'normal',
     },
     metaTag: {
-      color: '',
+      color: '#569cd6',
       fontStyle: 'normal',
     },
     attributeNameTag: {
-      color: '',
+      color: '#9cdcfe',
       fontStyle: 'normal',
     },
     attributeValueTag: {
-      color: '',
+      color: '#ce9178',
       fontStyle: 'normal',
     },
     atomTag: {
-      color: '',
+      color: '#ce9178',
       fontStyle: 'normal',
     },
     colorTag: {
-      color: '',
+      color: '#d7ba7d',
       fontStyle: 'normal',
     },
     classNameTag: {
-      color: '',
+      color: '#d7ba7d',
       fontStyle: 'normal',
     },
     unitTag: {
-      color: '',
+      color: '#b4cda7',
       fontStyle: 'normal',
     },
     angleBracketTag: {
-      color: '',
+      color: '#d4d4d4',
       fontStyle: 'normal',
     },
     punctuationTag: {
-      color: '',
+      color: '#d4d4d4',
       fontStyle: 'normal',
     },
     parenTag: {
-      color: '',
+      color: '#d4d4d4',
       fontStyle: 'normal',
     },
     squareBracketTag: {
-      color: '',
+      color: '#d4d4d4',
       fontStyle: 'normal',
     },
     bracketTag: {
-      color: '',
+      color: '#d4d4d4',
       fontStyle: 'normal',
     },
   },

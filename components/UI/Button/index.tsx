@@ -6,6 +6,7 @@ type ButtonProps = {
   fullWidth?: boolean;
   disabled?: boolean;
   icon?: ReactNode;
+  color?: 'teal' | 'primary';
   onClick?: () => void;
 };
 
@@ -14,9 +15,14 @@ export const Button = ({
   fullWidth = false,
   disabled = false,
   icon,
+  color = 'primary',
   onClick,
 }: ButtonProps) => {
-  const buttonClassNames = [styles.button, fullWidth ? styles['button--full-width'] : ''].join(' ');
+  const buttonClassNames = [
+    styles.button,
+    fullWidth ? styles['button--full-width'] : '',
+    styles[`button--${color}`],
+  ].join(' ');
 
   const clickHandle = () => {
     if (onClick) {

@@ -1,10 +1,10 @@
 import CodeMirror from '@uiw/react-codemirror';
 import { useMemo } from 'react';
-import type { Language } from './languages';
-import { languages } from './languages';
+import type { Language } from './utils/languages';
+import { languages } from './utils/languages';
 import type { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
-import { createTheme } from './createTheme';
+import { createTheme } from './utils/createTheme';
 import styles from './styles.module.scss';
 
 type CodeMirrorWrapperProps = {

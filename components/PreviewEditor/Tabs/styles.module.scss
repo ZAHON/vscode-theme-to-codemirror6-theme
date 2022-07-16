@@ -1,8 +1,8 @@
 .tabs {
   display: flex;
   flex-wrap: wrap;
-  background-color: hsl(240, 1%, 15%);
-  border-bottom: 2px solid hsla(0, 0%, 33%, 0.48);
+  background-color: var(--color-dark-4);
+  border-bottom: 2px solid var(--color-border);
 }
 
 .tab {
@@ -12,24 +12,25 @@
   justify-content: center;
   column-gap: 8px;
   cursor: pointer;
-  color: hsl(0, 0%, 100%);
+  color: var(--color-white);
   border: none;
   height: 40px;
   font-size: 14px;
+  font-weight: 500;
   line-height: 1;
-  background-color: hsl(0, 0%, 18%);
-  transition: background-color 0.2s ease-in;
+  background-color: var(--color-dark-1);
+  transition: background-color 0.1s ease;
 
   &:focus {
     outline: none;
   }
 
   &:hover {
-    background-color: hsl(0, 0%, 34%);
+    background-color: var(--color-dark-0);
   }
 
   &--active {
-    background-color: hsl(0, 0%, 12%);
+    background-color: var(--color-dark-2);
   }
 
   &__text {

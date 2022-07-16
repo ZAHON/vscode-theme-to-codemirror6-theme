@@ -1,8 +1,9 @@
 import type { ReactNode } from 'react';
 import { useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { useOnClickOutside } from './hooks/useOnClickOutside';
-import { useKeyPress } from './hooks/useKeyPress';
+import { useOnClickOutside } from '@/hooks/useOnClickOutside';
+import { useKeyPress } from '@/hooks/useKeyPress';
+import { X } from 'tabler-icons-react';
 import styles from './styles.module.scss';
 
 type PortalProps = {
@@ -41,7 +42,12 @@ export const Modal = ({ opened, children, title, onClose }: ModalProps) => {
     <Portal>
       <div className={styles.overlay}>
         <div ref={modalContentRef} className={styles.modal}>
-          <h2 className={styles.modal__title}>{title}</h2>
+          <div className={styles.modal__header}>
+            <h2 className={styles.modal__title}>{title}</h2>
+            <button className={styles.modal__close} onClick={onClose}>
+              <X size={20} />
+            </button>
+          </div>
           <div className={styles.modal__body}>{children}</div>
         </div>
       </div>

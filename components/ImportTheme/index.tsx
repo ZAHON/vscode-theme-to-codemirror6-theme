@@ -9,6 +9,7 @@ import { getHighlightStyle } from './utils/getHighlightStyle';
 import type { editor } from 'monaco-editor';
 import { Button } from '@/components/UI/Button/index';
 import { Modal } from '@/components/UI/Modal';
+import { Alert } from '@/components/UI/Alert/index';
 import { CodeMirrorWrapper } from '@/components/CodeMirrorWrapper/index';
 import { FileImport } from 'tabler-icons-react';
 import { placeholder } from './data/placeholder';
@@ -21,6 +22,7 @@ export const ImportTheme = () => {
   const monacoEditorIsMount = useSelector((state: RootState) => state.monacoEditor.isMount);
   const [opened, setOpened] = useState(false);
   const [vsCodeTheme, setVsCodeTheme] = useState('');
+  const [error, setError] = useState('');
 
   const buttonClickHandle = () => {
     try {
@@ -39,16 +41,20 @@ export const ImportTheme = () => {
         }, 1000);
 
         setOpened(false);
+        setError('');
+        setVsCodeTheme('');
       }
     } catch {
-      console.log('Error');
+      if (!vsCodeTheme) {
+        setError('First paste VS Code Theme!');
+      }
     }
   };
 
   return (
     <>
       <Button
-        icon={<FileImport size={15} />}
+        icon={<FileImport size={16} />}
         disabled={!monacoEditorIsMount}
         onClick={() => setOpened(true)}
       >
@@ -63,6 +69,7 @@ export const ImportTheme = () => {
             height="300px"
             placeholder={placeholder}
           />
+          {error && <Alert>{error}</Alert>}
           <Button onClick={buttonClickHandle}>Import</Button>
         </>
       </Modal>

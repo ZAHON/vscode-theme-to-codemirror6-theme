@@ -61,9 +61,10 @@ export const createTheme = (themeType: string, colors: Colors, tags: Tags): Exte
         backgroundColor: colors.activeLine.background
           ? colors.activeLine.background
           : 'transparent',
-        boxShadow: colors.activeLine.background
-          ? 'none'
-          : `0px -2px 0px 0px ${colors.activeLine.border}, 0px 2px 0px 0px ${colors.activeLine.border}`,
+        boxShadow:
+          !colors.activeLine.background && colors.activeLine.background !== colors.activeLine.border
+            ? `0px -2px 0px 0px ${colors.activeLine.border}, 0px 2px 0px 0px ${colors.activeLine.border}`
+            : `none`,
       },
       '.cm-activeLineGutter': {
         backgroundColor: colors.activeLine.lineNumbers.background,
@@ -151,6 +152,8 @@ export const createTheme = (themeType: string, colors: Colors, tags: Tags): Exte
         backgroundImage: 'none',
         border: 'none',
         borderRadius: '0',
+        cursor: 'pointer',
+        transition: 'background-color 0.1s ease-in',
       },
       '.cm-button:focus': {
         outlineOffset: '1px',
@@ -163,6 +166,7 @@ export const createTheme = (themeType: string, colors: Colors, tags: Tags): Exte
         backgroundImage: 'none',
       },
       '[name="close"]': {
+        cursor: 'pointer',
         color: colors.panels.buttonClose.text,
       },
     },

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { useClipboard } from '@/hooks/useClipboard';
 
-import { FileExport, Copy } from 'tabler-icons-react';
+import { Download, Copy } from 'tabler-icons-react';
 
 import { Button } from '@/components/UI/Button/index';
 import { TextInput } from '@/components/UI/TextInput';
@@ -47,11 +47,7 @@ export const ExportTheme = () => {
 
   return (
     <>
-      <Button
-        onClick={() => setOpened(true)}
-        disabled={!themeIsLoad}
-        icon={<FileExport size={15} />}
-      >
+      <Button onClick={() => setOpened(true)} disabled={!themeIsLoad} icon={<Download size={16} />}>
         Export
       </Button>
       <Modal title="CodeMirror6 Theme" opened={opened} onClose={() => setOpened(false)}>
@@ -74,7 +70,11 @@ export const ExportTheme = () => {
             height="300px"
             editable={false}
           />
-          <Button onClick={() => clipboard.copy(themeCode)} icon={<Copy size={15} />}>
+          <Button
+            color={clipboard.copied ? 'teal' : 'primary'}
+            onClick={() => clipboard.copy(themeCode)}
+            icon={<Copy size={16} />}
+          >
             {clipboard.copied ? 'Copied' : 'Copy'}
           </Button>
         </>

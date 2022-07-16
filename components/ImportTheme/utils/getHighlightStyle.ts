@@ -1,4 +1,5 @@
 import type { HighlightStyleState, Tag } from '@/redux/highlightStyleSlice';
+import { RGBToHex } from '@/utils/RGBToHex';
 
 const getTagStyles = (spans: HTMLSpanElement[], text: string): Tag => {
   const token = spans.find((span) => span.hasAttribute('class') && span.textContent.includes(text));
@@ -8,6 +9,11 @@ const getTagStyles = (spans: HTMLSpanElement[], text: string): Tag => {
   }
 
   const { color, fontStyle } = getComputedStyle(token);
+
+  const test = RGBToHex(color);
+  console.log(test);
+
+  // console.log(color, test);
 
   return { color, fontStyle };
 };

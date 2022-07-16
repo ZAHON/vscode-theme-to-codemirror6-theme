@@ -4,25 +4,27 @@
   row-gap: 4px;
 
   &__label {
+    font-weight: 500;
     font-size: 14px;
   }
 
   &__input {
     width: 260px;
-    color: #cccccc;
-    background-color: hsl(0, 0%, 24%);
-    border: 2px solid hsl(0, 0%, 24%);
-    height: 30px;
+    color: var(--color-white);
+    background-color: var(--color-dark-3);
+    border: 2px solid var(--color-dark-3);
+    height: 36px;
     font-size: 14px;
     font-weight: 500;
     padding: 0px 14px;
+    border-radius: 4px;
     transition-property: border-color;
     transition-duration: 0.1s;
     transition-timing-function: ease-in;
 
     &:focus {
       outline: none;
-      border-color: hsl(204, 100%, 42%);
+      border-color: var(--color-blue-0);
     }
   }
 }

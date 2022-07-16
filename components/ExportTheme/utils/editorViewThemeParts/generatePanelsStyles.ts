@@ -46,6 +46,8 @@ export const generatePanelsStyles = (colors: {
       backgroundImage: 'none',
       border: 'none',
       borderRadius: '0',
+      cursor: 'pointer',
+      transition: 'background-color 0.1s ease-in',
     },
     '.cm-button:focus': {
       outlineOffset: '1px',
@@ -58,6 +60,7 @@ export const generatePanelsStyles = (colors: {
       backgroundImage: 'none',
     },
     '[name="close"]': {
+      cursor: 'pointer',
       color: colors.buttonClose.text,
     },
   };

@@ -20,7 +20,8 @@
       "@/components/*": ["components/*"],
       "@/redux/*": ["redux/*"],
       "@/data/*": ["data/*"],
-      "@/hooks/*": ["hooks/*"]
+      "@/hooks/*": ["hooks/*"],
+      "@/utils/*": ["utils/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

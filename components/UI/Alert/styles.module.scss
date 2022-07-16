@@ -1,0 +1,9 @@
+.alert {
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: var(--color-red-1);
+
+  &__content {
+    color: var(--color-white);
+  }
+}
