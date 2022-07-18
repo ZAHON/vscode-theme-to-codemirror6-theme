@@ -1,5 +1,4 @@
 import type { HighlightStyleState, Tag } from '@/redux/highlightStyleSlice';
-import { RGBToHex } from '@/utils/RGBToHex';
 
 const getTagStyles = (spans: HTMLSpanElement[], text: string): Tag => {
   const token = spans.find((span) => span.hasAttribute('class') && span.textContent.includes(text));
@@ -9,11 +8,6 @@ const getTagStyles = (spans: HTMLSpanElement[], text: string): Tag => {
   }
 
   const { color, fontStyle } = getComputedStyle(token);
-
-  const test = RGBToHex(color);
-  console.log(test);
-
-  // console.log(color, test);
 
   return { color, fontStyle };
 };
@@ -32,14 +26,20 @@ export const getHighlightStyle = (): HighlightStyleState => {
   const moduleKeywordTag = getTagStyles(spansTSX, 'import');
   const keywordTag = getTagStyles(spansTSX, 'const');
   const typeNameTag = getTagStyles(spansTSX, 'HTMLProps');
+  const typeOperatorTag = getTagStyles(spansTSX, 'HTMLProps');
   const definitionTypeNameTag = getTagStyles(spansTSX, 'Props');
   const operatorTag = getTagStyles(spansTSX, '=');
+  const specialStringTag = getTagStyles(spansTSX, "'string'");
   const boolTag = getTagStyles(spansTSX, 'true');
   const numberTag = getTagStyles(spansTSX, '123');
   const stringTag = getTagStyles(spansTSX, "'string'");
+  const headingTag = getTagStyles(spansTSX, "'string'");
+  const processingInstructionTag = getTagStyles(spansTSX, "'string'");
+  const insertedTag = getTagStyles(spansTSX, "'string'");
   const nullTag = getTagStyles(spansTSX, 'null');
   const selfTag = getTagStyles(spansTSX, 'this');
   const functionVariableNameTag = getTagStyles(spansTSX, 'log');
+  const functionPropertyNameTag = getTagStyles(spansTSX, 'log');
   const commentTag = getTagStyles(spansTSX, '//Comment');
   const regexpTag = getTagStyles(spansTSX, ' /pani');
   const definitionNameTag = getTagStyles(spansTSX, 'React');
@@ -57,7 +57,10 @@ export const getHighlightStyle = (): HighlightStyleState => {
 
   const atomTag = getTagStyles(spansCSS, 'border-box');
   const colorTag = getTagStyles(spansCSS, ':root');
+  const constantNameTag = getTagStyles(spansCSS, ':root');
+  const standardNameTag = getTagStyles(spansCSS, ':root');
   const classNameTag = getTagStyles(spansCSS, 'body');
+  const namespaceTag = getTagStyles(spansCSS, 'body');
   const unitTag = getTagStyles(spansCSS, 'px');
 
   return {
@@ -67,14 +70,20 @@ export const getHighlightStyle = (): HighlightStyleState => {
       moduleKeywordTag,
       keywordTag,
       typeNameTag,
+      typeOperatorTag,
       definitionTypeNameTag,
       operatorTag,
+      specialStringTag,
       boolTag,
       numberTag,
       stringTag,
+      headingTag,
+      processingInstructionTag,
+      insertedTag,
       nullTag,
       selfTag,
       functionVariableNameTag,
+      functionPropertyNameTag,
       commentTag,
       regexpTag,
       tagNameTag,
@@ -85,7 +94,10 @@ export const getHighlightStyle = (): HighlightStyleState => {
       attributeValueTag,
       atomTag,
       colorTag,
+      constantNameTag,
+      standardNameTag,
       classNameTag,
+      namespaceTag,
       unitTag,
       angleBracketTag,
       punctuationTag,

@@ -11,14 +11,20 @@ export type Tags = {
   moduleKeywordTag: Tag;
   keywordTag: Tag;
   typeNameTag: Tag;
+  typeOperatorTag: Tag;
   definitionTypeNameTag: Tag;
   operatorTag: Tag;
+  specialStringTag: Tag;
   boolTag: Tag;
   numberTag: Tag;
   stringTag: Tag;
+  headingTag: Tag;
+  processingInstructionTag: Tag;
+  insertedTag: Tag;
   nullTag: Tag;
   selfTag: Tag;
   functionVariableNameTag: Tag;
+  functionPropertyNameTag: Tag;
   commentTag: Tag;
   regexpTag: Tag;
   tagNameTag: Tag;
@@ -29,7 +35,10 @@ export type Tags = {
   attributeValueTag: Tag;
   atomTag: Tag;
   colorTag: Tag;
+  constantNameTag: Tag;
+  standardNameTag: Tag;
   classNameTag: Tag;
+  namespaceTag: Tag;
   unitTag: Tag;
   angleBracketTag: Tag;
   punctuationTag: Tag;
@@ -63,12 +72,20 @@ const initialState: HighlightStyleState = {
       color: '#4ec9b0',
       fontStyle: 'normal',
     },
+    typeOperatorTag: {
+      color: '#4ec9b0',
+      fontStyle: 'normal',
+    },
     definitionTypeNameTag: {
       color: '#4ec9b0',
       fontStyle: 'normal',
     },
     operatorTag: {
       color: '#569cd6',
+      fontStyle: 'normal',
+    },
+    specialStringTag: {
+      color: '#ce9178',
       fontStyle: 'normal',
     },
     boolTag: {
@@ -83,6 +100,18 @@ const initialState: HighlightStyleState = {
       color: '#ce9178',
       fontStyle: 'normal',
     },
+    headingTag: {
+      color: '#ce9178',
+      fontStyle: 'normal',
+    },
+    processingInstructionTag: {
+      color: '#ce9178',
+      fontStyle: 'normal',
+    },
+    insertedTag: {
+      color: '#ce9178',
+      fontStyle: 'normal',
+    },
     nullTag: {
       color: '#569cd6',
       fontStyle: 'normal',
@@ -92,6 +121,10 @@ const initialState: HighlightStyleState = {
       fontStyle: 'normal',
     },
     functionVariableNameTag: {
+      color: '#dcdca8',
+      fontStyle: 'normal',
+    },
+    functionPropertyNameTag: {
       color: '#dcdca8',
       fontStyle: 'normal',
     },
@@ -135,7 +168,19 @@ const initialState: HighlightStyleState = {
       color: '#d7ba7d',
       fontStyle: 'normal',
     },
+    constantNameTag: {
+      color: '#d7ba7d',
+      fontStyle: 'normal',
+    },
+    standardNameTag: {
+      color: '#d7ba7d',
+      fontStyle: 'normal',
+    },
     classNameTag: {
+      color: '#d7ba7d',
+      fontStyle: 'normal',
+    },
+    namespaceTag: {
       color: '#d7ba7d',
       fontStyle: 'normal',
     },
@@ -176,9 +221,15 @@ export const highlightStyleSlice = createSlice({
         tags: action.payload.tags,
       };
     },
+    setHighlightStyleTag(
+      state,
+      action: PayloadAction<{ key: keyof Tags; property: keyof Tag; value: string }>
+    ) {
+      state.tags[action.payload.key][action.payload.property] = action.payload.value;
+    },
   },
 });
 
-export const { setHighlightStyle } = highlightStyleSlice.actions;
+export const { setHighlightStyle, setHighlightStyleTag } = highlightStyleSlice.actions;
 
 export default highlightStyleSlice.reducer;

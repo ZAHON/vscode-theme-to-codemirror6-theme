@@ -55,14 +55,12 @@ export const ExportTheme = () => {
           <TextInput
             value={themeName}
             onChange={(value) => setThemeName(value)}
-            id="theme-name-text-input"
             label="Theme name"
           />
           <Checkbox
             checked={includeScrollbarStyles}
             onChange={(value) => setIncludeScrollbarStyles(value)}
             label="Include scrollbar styles"
-            id="include-scrollbar-styles-checkbox"
           />
           <CodeMirrorWrapper
             value={themeCode}

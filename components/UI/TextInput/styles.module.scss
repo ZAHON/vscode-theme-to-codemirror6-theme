@@ -26,5 +26,9 @@
       outline: none;
       border-color: var(--color-blue-0);
     }
+
+    &--full-width {
+      width: 100%;
+    }
   }
 }

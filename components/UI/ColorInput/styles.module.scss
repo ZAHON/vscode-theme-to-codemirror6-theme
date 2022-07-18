@@ -1,0 +1,36 @@
+.color-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__swatch {
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--color-border);
+    border-radius: 4px;
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--color-blue-0);
+    }
+  }
+
+  &__content {
+    width: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 0.5rem;
+    background-color: var(--color-dark-5);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CodeMirrorWrapper } from '@/components/CodeMirrorWrapper/index';
+import { CodeMirrorThemeWrapper } from '@/components/CodeMirrorThemeWrapper/index';
 import { Tabs } from './Tabs/index';
 import {
   cppValue,
@@ -60,7 +61,14 @@ export const PreviewEditor = () => {
   return (
     <div className={styles['preview-editor']}>
       <Tabs onClickTab={setActiveTab} activeTab={activeTab} />
-      <CodeMirrorWrapper value={values[activeTab]} onChange={onChange} language={activeTab} height="400px" />
+      <CodeMirrorThemeWrapper>
+        <CodeMirrorWrapper
+          value={values[activeTab]}
+          onChange={onChange}
+          language={activeTab}
+          height="100%"
+        />
+      </CodeMirrorThemeWrapper>
     </div>
   );
 };

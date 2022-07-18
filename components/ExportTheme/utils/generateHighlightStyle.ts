@@ -56,8 +56,13 @@ export const generateHighlightStyle = ({ themeName, tags }: { themeName: string;
   });
 
   const typeNameTag = generateTag({
-    name: '[t.typeName, t.typeOperator]',
+    name: '[t.typeName]',
     style: tags.typeNameTag,
+  });
+
+  const typeOperatorTag = generateTag({
+    name: '[t.typeOperator]',
+    style: tags.typeOperatorTag,
   });
 
   const definitionTypeNameTag = generateTag({
@@ -66,8 +71,13 @@ export const generateHighlightStyle = ({ themeName, tags }: { themeName: string;
   });
 
   const operatorTag = generateTag({
-    name: '[t.operator, t.special(t.string)]',
+    name: '[t.operator]',
     style: tags.operatorTag,
+  });
+
+  const specialStringTag = generateTag({
+    name: '[t.special(t.string)]',
+    style: tags.specialStringTag,
   });
 
   const boolTag = generateTag({
@@ -81,8 +91,18 @@ export const generateHighlightStyle = ({ themeName, tags }: { themeName: string;
   });
 
   const stringTag = generateTag({
-    name: '[t.string, t.processingInstruction, t.inserted]',
+    name: '[t.string]',
     style: tags.stringTag,
+  });
+
+  const processingInstructionTag = generateTag({
+    name: '[t.processingInstruction]',
+    style: tags.processingInstructionTag,
+  });
+
+  const insertedTag = generateTag({
+    name: '[t.inserted]',
+    style: tags.insertedTag,
   });
 
   const nullTag = generateTag({
@@ -96,8 +116,13 @@ export const generateHighlightStyle = ({ themeName, tags }: { themeName: string;
   });
 
   const functionVariableNameTag = generateTag({
-    name: '[t.function(t.variableName), t.function(t.propertyName)]',
+    name: '[t.function(t.variableName)]',
     style: tags.functionVariableNameTag,
+  });
+
+  const functionPropertyNameTag = generateTag({
+    name: '[t.function(t.propertyName)]',
+    style: tags.functionPropertyNameTag,
   });
 
   const commentTag = generateTag({
@@ -146,8 +171,13 @@ export const generateHighlightStyle = ({ themeName, tags }: { themeName: string;
   });
 
   const classNameTag = generateTag({
-    name: '[t.className, t.namespace]',
+    name: '[t.className]',
     style: tags.classNameTag,
+  });
+
+  const namespaceTag = generateTag({
+    name: '[t.namespace]',
+    style: tags.namespaceTag,
   });
 
   const unitTag = generateTag({
@@ -156,13 +186,23 @@ export const generateHighlightStyle = ({ themeName, tags }: { themeName: string;
   });
 
   const colorTag = generateTag({
-    name: '[t.color, t.constant(t.name), t.standard(t.name)]',
+    name: '[t.color]',
     style: tags.colorTag,
+  });
+
+  const constantNameTag = generateTag({
+    name: '[t.constant(t.name)]',
+    style: tags.constantNameTag,
+  });
+
+  const standardNameTag = generateTag({
+    name: '[t.standard(t.name)]',
+    style: tags.standardNameTag,
   });
 
   const headingTag = generateTag({
     name: '[t.heading]',
-    style: tags.stringTag,
+    style: tags.headingTag,
     otherStyle: "fontWeight: '700'",
   });
 
@@ -199,14 +239,19 @@ export const generateHighlightStyle = ({ themeName, tags }: { themeName: string;
 		${moduleKeywordTag},
 		${keywordTag},
 		${typeNameTag},
+		${typeOperatorTag},
 		${definitionTypeNameTag},
 		${operatorTag},
+		${specialStringTag},
 		${boolTag},
 		${numberTag},
 		${stringTag},
+		${processingInstructionTag},
+		${insertedTag},
 		${nullTag},
 		${selfTag},
 		${functionVariableNameTag},
+		${functionPropertyNameTag},
 		${commentTag},
 		${regexpTag},
 		${tagNameTag},
@@ -217,8 +262,11 @@ export const generateHighlightStyle = ({ themeName, tags }: { themeName: string;
 		${attributeValueTag},
 		${atomTag},
 		${classNameTag},
+		${namespaceTag},
 		${unitTag},
 		${colorTag},
+		${constantNameTag},
+		${standardNameTag},
 		${headingTag},
 		${punctuationTag},
 		${parenTag},
