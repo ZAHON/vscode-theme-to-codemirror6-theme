@@ -15,6 +15,7 @@ import { CodeMirrorThemeWrapper } from '@/components/CodeMirrorThemeWrapper';
 import { CodeMirrorWrapper } from '@/components/CodeMirrorWrapper';
 
 import { generateCode } from '../utils/generateCode';
+import { generateCSSCode } from '../utils/generateCSSCode';
 
 type ThemeModalProps = {
   opened: boolean;
@@ -25,6 +26,7 @@ export const ThemeModal = ({ opened, onClose }: ThemeModalProps) => {
   const clipboard = useClipboard();
   const [themeName, setThemeName] = useState('example');
   const [includeScrollbarStyles, setIncludeScrollbarStyles] = useState(true);
+  const [exportAsCSS, setExportAdCSS] = useState(false);
 
   const themeType = useSelector((state: RootState) => state.editorViewStyle.themeType);
   const colors = useSelector((state: RootState) => state.editorViewStyle.colors);
@@ -35,13 +37,15 @@ export const ThemeModal = ({ opened, onClose }: ThemeModalProps) => {
     return name === '' ? 'example' : name;
   })();
 
-  const themeCode = generateCode({
-    themeName: formatedThemeName,
-    themeType,
-    includeScrollbarStyles,
-    colors,
-    tags,
-  });
+  const themeCode = exportAsCSS
+    ? generateCSSCode({ themeName: formatedThemeName, colors, tags })
+    : generateCode({
+        themeName: formatedThemeName,
+        themeType,
+        includeScrollbarStyles,
+        colors,
+        tags,
+      });
 
   return (
     <Modal title="CodeMirror6 Theme" opened={opened} onClose={onClose}>
@@ -52,10 +56,15 @@ export const ThemeModal = ({ opened, onClose }: ThemeModalProps) => {
           onChange={(value) => setIncludeScrollbarStyles(value)}
           label="Include scrollbar styles"
         />
+        <Checkbox
+          checked={exportAsCSS}
+          onChange={(value) => setExportAdCSS(value)}
+          label="Export as CSS"
+        />
         <CodeMirrorThemeWrapper>
           <CodeMirrorWrapper
             value={themeCode}
-            language="typescript"
+            language={exportAsCSS ? 'css' : 'typescript'}
             height="300px"
             editable={false}
           />

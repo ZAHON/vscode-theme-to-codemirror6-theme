@@ -2,7 +2,7 @@ import type { Colors } from '@/redux/editorViewStyleSlice';
 import type { Tags } from '@/redux/highlightStyleSlice';
 
 import prettier from 'prettier/standalone';
-import babylon from 'prettier/parser-babel';
+import parser from 'prettier/parser-babel';
 
 import { generateEditorViewTheme } from './generateEditorViewTheme';
 import { generateHighlightStyle } from './generateHighlightStyle';
@@ -44,7 +44,7 @@ export const generateCode = ({
 
   const formattedCode = prettier.format(uglyCode, {
     parser: 'babel',
-    plugins: [babylon],
+    plugins: [parser],
     tabWidth: 2,
   });
 
