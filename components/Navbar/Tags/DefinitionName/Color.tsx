@@ -8,10 +8,13 @@ export const Color = () => {
   const color = useSelector(
     (state: RootState) => state.highlightStyle.tags.definitionNameTag.color
   );
+  const defaultColor = useSelector(
+    (state: RootState) => state.highlightStyle.defaultTags.definitionNameTag.color
+  );
 
   const onChange = (value: string) => {
     dispatch(setHighlightStyleTag({ key: 'definitionNameTag', property: 'color', value: value }));
   };
 
-  return <ColorInput value={color} onChange={onChange} label="color" />;
+  return <ColorInput value={color} defaultValue={defaultColor} onChange={onChange} label="color" />;
 };

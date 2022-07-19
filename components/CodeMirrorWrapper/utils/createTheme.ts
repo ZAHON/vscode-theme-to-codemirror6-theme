@@ -3,31 +3,29 @@ import { Extension } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 import { tags as t } from '@lezer/highlight';
 
-import type { Colors } from '@/redux/editorViewStyleSlice';
-
-export const createTheme = (themeType: string, colors: Colors): Extension => {
+export const createTheme = (): Extension => {
   const theme = EditorView.theme(
     {
       // Base
       '&': {
-        color: colors.base.text,
-        backgroundColor: colors.base.background,
+        color: 'var(--base-text)',
+        backgroundColor: 'var(--base-background)',
       },
 
       '.cm-scroller': {
         '-ms-overflow-style': 'auto',
-        scrollbarColor: `${colors.scrollbar.thumb.background} ${colors.scrollbar.track.background}`,
+        scrollbarColor: 'var(--scrollbar-thumb-background) var(--scrollbar-track-background)',
 
         '&::-webkit-scrollbar-thumb': {
-          backgroundColor: colors.scrollbar.thumb.background,
+          backgroundColor: 'var(--scrollbar-thumb-background)',
         },
 
         '&::-webkit-scrollbar-track': {
-          backgroundColor: colors.scrollbar.track.background,
+          backgroundColor: 'var(--scrollbar-track-background)',
         },
 
         '&::-webkit-scrollbar-corner': {
-          backgroundColor: colors.scrollbar.track.background,
+          backgroundColor: 'var(--scrollbar-track-background)',
         },
 
         '&::-webkit-scrollbar': {
@@ -38,17 +36,17 @@ export const createTheme = (themeType: string, colors: Colors): Extension => {
 
       // Cursor
       '.cm-content': {
-        caretColor: colors.cursor.border,
+        caretColor: 'var(--cursor-border)',
       },
       '.cm-cursor, .cm-dropCursor': {
-        borderLeftColor: colors.cursor.border,
+        borderLeftColor: 'var(--cursor-border)',
         borderLeftWidth: '2px',
       },
 
       // LineNumbers
       '.cm-gutters': {
-        backgroundColor: colors.lineNumbers.background,
-        color: colors.lineNumbers.text,
+        backgroundColor: 'var(--gutters-background)',
+        color: 'var(--gutters-text)',
         borderRight: 'none',
       },
       '.cm-gutterElement': {
@@ -57,79 +55,74 @@ export const createTheme = (themeType: string, colors: Colors): Extension => {
 
       // ActiveLine
       '.cm-activeLine': {
-        backgroundColor: colors.activeLine.background
-          ? colors.activeLine.background
-          : 'transparent',
-        boxShadow:
-          !colors.activeLine.background && colors.activeLine.background !== colors.activeLine.border
-            ? `0px -2px 0px 0px ${colors.activeLine.border}, 0px 2px 0px 0px ${colors.activeLine.border}`
-            : `none`,
+        backgroundColor: 'var(--active-line-background)',
+        boxShadow: 'var(--active-line-border)',
       },
       '.cm-activeLineGutter': {
-        backgroundColor: colors.activeLine.lineNumbers.background,
-        color: colors.activeLine.lineNumbers.text,
+        backgroundColor: 'var(--active-line-gutter-background)',
+        color: 'var(--active-line-gutter-text)',
       },
 
       // FoldPlaceholder
       '.cm-foldPlaceholder': {
         backgroundColor: 'transparent',
         border: 'none',
-        color: colors.foldPlaceholder.text,
+        color: 'var(--fold-placeholder-text)',
       },
 
       // Selection
       '&.cm-focused .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection': {
-        backgroundColor: colors.selection.background,
+        backgroundColor: 'var(--selection-background)',
       },
       '.cm-selectionMatch': {
-        backgroundColor: colors.selection.match.background,
-        outline: `1px solid ${colors.selection.match.outline}`,
+        backgroundColor: 'var(--selection-match-background)',
+        outline: '1px solid var(--selection-match-outline)',
       },
 
       // MatchingBracket
       '&.cm-focused .cm-matchingBracket': {
-        backgroundColor: colors.matchingBracket.background,
-        outline: `1px solid ${colors.matchingBracket.outline}`,
+        backgroundColor: 'var(--matching-bracket-background)',
+        outline: '1px solid var(--matching-bracket-outline)',
       },
 
       // SearchMatch
       '.cm-searchMatch': {
-        backgroundColor: colors.searchMatch.background,
+        backgroundColor: 'var(--search-match-background)',
       },
       '.cm-searchMatch.cm-searchMatch-selected': {
-        backgroundColor: colors.searchMatch.selected.background,
+        backgroundColor: 'var(--search-match-selected-background)',
       },
 
       // Autocomplete
       '.cm-tooltip': {
-        backgroundColor: colors.autocomplete.background,
-        border: `1px solid ${colors.autocomplete.border}`,
+        backgroundColor: 'var(--tooltip-background)',
+        border: '1px solid var(--tooltip-border)',
       },
       '.cm-tooltip .cm-tooltip-arrow:before': {
         borderTopColor: 'transparent',
         borderBottomColor: 'transparent',
       },
       '.cm-tooltip .cm-tooltip-arrow:after': {
-        borderTopColor: colors.autocomplete.background,
-        borderBottomColor: colors.autocomplete.background,
+        borderTopColor: 'var(--tooltip-background)',
+        borderBottomColor: 'var(--tooltip-background)',
       },
       '.cm-tooltip-autocomplete': {
         '& > ul > li': {
-          color: colors.autocomplete.item.text,
+          color: 'var(--tooltip-item-text)',
         },
         '& > ul > li[aria-selected]': {
-          color: colors.autocomplete.item.selected.text,
-          backgroundColor: colors.autocomplete.item.selected.background,
+          color: 'var(--tooltip-item-selected-text)',
+          backgroundColor: 'var(--tooltip-item-selected-background)',
         },
         '& > ul > li:hover:not([aria-selected])': {
-          backgroundColor: colors.autocomplete.item.hovered.background,
+          backgroundColor: 'var(--tooltip-item-hovered-background)',
         },
       },
 
       // Panels
       '.cm-panels': {
-        color: colors.panels.text,
-        backgroundColor: colors.panels.background,
+        color: 'var(--panels-text)',
+        backgroundColor: 'var(--panels-background)',
       },
       '.cm-panels.cm-panels-top': {
         borderBottom: 'none',
@@ -138,16 +131,16 @@ export const createTheme = (themeType: string, colors: Colors): Extension => {
         borderTop: 'none',
       },
       '.cm-textfield': {
-        backgroundColor: colors.panels.textField.background,
-        border: `1px solid ${colors.panels.textField.background}`,
+        backgroundColor: 'var(--panels-text-field-background)',
+        border: '1px solid var(--panels-text-field-background)',
       },
       '.cm-textfield:focus': {
         outline: 'none',
-        borderColor: colors.panels.textField.focused.border,
+        borderColor: 'var(--panels-text-field-focused-border)',
       },
       '.cm-button': {
-        color: colors.panels.button.text,
-        backgroundColor: colors.panels.button.background,
+        color: 'var(--panels-button-text)',
+        backgroundColor: 'var(--panels-button-background)',
         backgroundImage: 'none',
         border: 'none',
         borderRadius: '0',
@@ -156,20 +149,20 @@ export const createTheme = (themeType: string, colors: Colors): Extension => {
       },
       '.cm-button:focus': {
         outlineOffset: '1px',
-        outline: `1px solid ${colors.panels.button.focused.outline}`,
+        outline: '1px solid var(--panels-button-focused-outline)',
       },
       '.cm-button:hover': {
-        backgroundColor: colors.panels.button.hovered.background,
+        backgroundColor: 'var(--panels-button-hovered-background)',
       },
       '.cm-button:active': {
         backgroundImage: 'none',
       },
       '[name="close"]': {
         cursor: 'pointer',
-        color: colors.panels.buttonClose.text,
+        color: 'var(--panels-button-close-text)',
       },
     },
-    { dark: themeType === 'dark' }
+    { dark: true }
   );
 
   const themeHighlightStyle = HighlightStyle.define([

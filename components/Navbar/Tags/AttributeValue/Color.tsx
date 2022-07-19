@@ -8,10 +8,13 @@ export const Color = () => {
   const color = useSelector(
     (state: RootState) => state.highlightStyle.tags.attributeValueTag.color
   );
+  const defaultColor = useSelector(
+    (state: RootState) => state.highlightStyle.defaultTags.attributeValueTag.color
+  );
 
   const onChange = (value: string) => {
     dispatch(setHighlightStyleTag({ key: 'attributeValueTag', property: 'color', value: value }));
   };
 
-  return <ColorInput value={color} onChange={onChange} label="color" />;
+  return <ColorInput value={color} defaultValue={defaultColor} onChange={onChange} label="color" />;
 };

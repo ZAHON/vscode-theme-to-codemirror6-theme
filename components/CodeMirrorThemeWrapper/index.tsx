@@ -7,6 +7,51 @@ type CodeMirrorThemeWrapperProps = {
 };
 
 interface CustomCSS extends CSSProperties {
+  '--base-text': string;
+  '--base-background': string;
+
+  '--scrollbar-thumb-background': string;
+  '--scrollbar-track-background': string;
+
+  '--cursor-border': string;
+
+  '--gutters-text': string;
+  '--gutters-background': string;
+
+  '--active-line-background': string;
+  '--active-line-border': string;
+  '--active-line-gutter-background': string;
+  '--active-line-gutter-text': string;
+
+  '--fold-placeholder-text': string;
+
+  '--selection-background': string;
+  '--selection-match-outline': string;
+  '--selection-match-background': string;
+
+  '--matching-bracket-outline': string;
+  '--matching-bracket-background': string;
+
+  '--search-match-background': string;
+  '--search-match-selected-background': string;
+
+  '--tooltip-background': string;
+  '--tooltip-border': string;
+  '--tooltip-item-text': string;
+  '--tooltip-item-selected-text': string;
+  '--tooltip-item-selected-background': string;
+  '--tooltip-item-hovered-background': string;
+
+  '--panels-text': string;
+  '--panels-background': string;
+  '--panels-text-field-background': string;
+  '--panels-text-field-focused-border': string;
+  '--panels-button-text': string;
+  '--panels-button-background': string;
+  '--panels-button-focused-outline': string;
+  '--panels-button-hovered-background': string;
+  '--panels-button-close-text': string;
+
   '--definition-property-name-color': string;
   '--definition-property-name-font-style': string;
 
@@ -124,8 +169,59 @@ interface CustomCSS extends CSSProperties {
 
 export const CodeMirrorThemeWrapper = ({ children }: CodeMirrorThemeWrapperProps) => {
   const tags = useSelector((state: RootState) => state.highlightStyle.tags);
+  const colors = useSelector((state: RootState) => state.editorViewStyle.colors);
 
   const style: CustomCSS = {
+    '--base-text': colors.base.text,
+    '--base-background': colors.base.background,
+
+    '--scrollbar-thumb-background': colors.scrollbar.thumb.background,
+    '--scrollbar-track-background': colors.scrollbar.track.background,
+
+    '--cursor-border': colors.cursor.border,
+
+    '--gutters-text': colors.lineNumbers.text,
+    '--gutters-background': colors.lineNumbers.background,
+
+    '--active-line-background': colors.activeLine.background
+      ? colors.activeLine.background
+      : 'transparent',
+    '--active-line-border':
+      !colors.activeLine.background && colors.activeLine.background !== colors.activeLine.border
+        ? `0px -2px 0px 0px ${colors.activeLine.border}, 0px 2px 0px 0px ${colors.activeLine.border}`
+        : `none`,
+    '--active-line-gutter-text': colors.activeLine.lineNumbers.text,
+    '--active-line-gutter-background': colors.activeLine.lineNumbers.background,
+
+    '--fold-placeholder-text': colors.foldPlaceholder.text,
+
+    '--selection-background': colors.selection.background,
+    '--selection-match-outline': colors.selection.match.outline,
+    '--selection-match-background': colors.selection.match.background,
+
+    '--matching-bracket-outline': colors.matchingBracket.outline,
+    '--matching-bracket-background': colors.matchingBracket.background,
+
+    '--search-match-background': colors.searchMatch.background,
+    '--search-match-selected-background': colors.searchMatch.selected.background,
+
+    '--tooltip-background': colors.autocomplete.background,
+    '--tooltip-border': colors.autocomplete.border,
+    '--tooltip-item-text': colors.autocomplete.item.text,
+    '--tooltip-item-selected-text': colors.autocomplete.item.selected.text,
+    '--tooltip-item-selected-background': colors.autocomplete.item.selected.background,
+    '--tooltip-item-hovered-background': colors.autocomplete.item.hovered.background,
+
+    '--panels-text': colors.panels.text,
+    '--panels-background': colors.panels.background,
+    '--panels-text-field-background': colors.panels.textField.background,
+    '--panels-text-field-focused-border': colors.panels.textField.background,
+    '--panels-button-text': colors.panels.button.text,
+    '--panels-button-background': colors.panels.button.background,
+    '--panels-button-focused-outline': colors.panels.button.focused.outline,
+    '--panels-button-hovered-background': colors.panels.button.hovered.background,
+    '--panels-button-close-text': colors.panels.buttonClose.text,
+
     '--definition-property-name-color': tags.definitionPropertyNameTag.color,
     '--definition-property-name-font-style': tags.definitionPropertyNameTag.fontStyle,
 

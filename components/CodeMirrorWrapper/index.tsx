@@ -2,8 +2,6 @@ import CodeMirror from '@uiw/react-codemirror';
 import { useMemo } from 'react';
 import type { Language } from './utils/languages';
 import { languages } from './utils/languages';
-import type { RootState } from '../../redux/store';
-import { useSelector } from 'react-redux';
 import { createTheme } from './utils/createTheme';
 import styles from './styles.module.scss';
 
@@ -18,6 +16,8 @@ type CodeMirrorWrapperProps = {
   onChange?: (value: string) => void;
 };
 
+const theme = createTheme();
+
 export const CodeMirrorWrapper = ({
   language,
   value,
@@ -28,11 +28,6 @@ export const CodeMirrorWrapper = ({
   placeholder,
   onChange,
 }: CodeMirrorWrapperProps) => {
-  const themeType = useSelector((state: RootState) => state.editorViewStyle.themeType);
-  const colors = useSelector((state: RootState) => state.editorViewStyle.colors);
-
-  const theme = createTheme(themeType, colors);
-
   const languageExtension = useMemo(() => {
     const languageData = languages.find((data) => data.id === language) as Language;
 

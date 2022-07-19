@@ -7,10 +7,11 @@ import { setHighlightStyle } from '@/redux/highlightStyleSlice';
 import { getEditorViewStyle } from './utils/getEditorViewStyle';
 import { getHighlightStyle } from './utils/getHighlightStyle';
 import type { editor } from 'monaco-editor';
-import { Button } from '@/components/UI/Button/index';
+import { Button } from '@/components/UI/Button';
 import { Modal } from '@/components/UI/Modal';
-import { Alert } from '@/components/UI/Alert/index';
-import { CodeMirrorWrapper } from '@/components/CodeMirrorWrapper/index';
+import { Alert } from '@/components/UI/Alert';
+import { CodeMirrorThemeWrapper } from '@/components/CodeMirrorThemeWrapper';
+import { CodeMirrorWrapper } from '@/components/CodeMirrorWrapper';
 import { FileImport } from 'tabler-icons-react';
 import { placeholder } from './data/placeholder';
 
@@ -62,13 +63,15 @@ export const ImportTheme = () => {
       </Button>
       <Modal title="VS Vode Theme" opened={opened} onClose={() => setOpened(false)}>
         <>
-          <CodeMirrorWrapper
-            language="json"
-            value={vsCodeTheme}
-            onChange={(value) => setVsCodeTheme(value)}
-            height="300px"
-            placeholder={placeholder}
-          />
+          <CodeMirrorThemeWrapper>
+            <CodeMirrorWrapper
+              language="json"
+              value={vsCodeTheme}
+              onChange={(value) => setVsCodeTheme(value)}
+              height="300px"
+              placeholder={placeholder}
+            />
+          </CodeMirrorThemeWrapper>
           {error && <Alert>{error}</Alert>}
           <Button onClick={buttonClickHandle}>Import</Button>
         </>

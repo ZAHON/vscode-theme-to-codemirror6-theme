@@ -8,6 +8,9 @@ export const Color = () => {
   const color = useSelector(
     (state: RootState) => state.highlightStyle.tags.functionVariableNameTag.color
   );
+  const defaultColor = useSelector(
+    (state: RootState) => state.highlightStyle.defaultTags.functionVariableNameTag.color
+  );
 
   const onChange = (value: string) => {
     dispatch(
@@ -15,5 +18,5 @@ export const Color = () => {
     );
   };
 
-  return <ColorInput value={color} onChange={onChange} label="color" />;
+  return <ColorInput value={color} defaultValue={defaultColor} onChange={onChange} label="color" />;
 };
